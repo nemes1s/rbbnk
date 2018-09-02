@@ -1,0 +1,7 @@
+{
+  "name": "rbbk",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
