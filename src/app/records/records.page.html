@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>records</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+      <ion-label>Records: {{(records$|async).length || 0}}</ion-label>
+      <input type='file' (change)="handleRecordsFile($event)" multiple="false" name="recordsFile">
+      <!--<ion-input type="file" (ionChange)="handleRecordsFile($event)" [(ngModel)]="recordsFilePath" name="file"></ion-input>-->
+    </ion-item>
+    <ion-grid *ngIf="(records$|async).length">
+        <ion-row class="head">
+            <ion-col>Reference</ion-col>
+            <ion-col>Account Number</ion-col>
+            <ion-col>Description</ion-col>
+            <ion-col>Start Balance</ion-col>
+            <ion-col>Mutation</ion-col>
+            <ion-col>End Balance</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let record of (records$|async)">
+            <ion-col>{{record.reference}}</ion-col>
+            <ion-col>{{record.accountNumber}}</ion-col>
+            <ion-col>{{record.description}}</ion-col>
+            <ion-col>{{record.startBalance}}</ion-col>
+            <ion-col>{{record.mutation}}</ion-col>
+            <ion-col>{{record.endBalance}}</ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf="(errorRecords$|async).length">
+        <ion-row class="head">
+            <ion-col>Reference</ion-col>
+            <ion-col>Error</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let record of (errorRecords$|async)">
+            <ion-col>{{record.reference}}</ion-col>
+            <ion-col>{{record.errors.join(' ')}}</ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-item *ngIf="(error$|async).toString()">
+        <ion-label class="error">ERRORS: {{error$|async}}</ion-label>
+    </ion-item>
+</ion-content>
