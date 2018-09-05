@@ -1,4 +1,5 @@
 # Assignment Dmytro
 
 - **run**: ionic serve;
-- **tests**: TODO
+
+- **use**: use provided csv and xml files to test
